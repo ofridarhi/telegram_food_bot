@@ -1,11 +1,13 @@
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler
+from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, Filters
 from functions import init_webdriver, get_page_source, extract_names_prices  # Import functions from scraper.py
 from bs4 import BeautifulSoup
-
+from dotenv import load_dotenv
+import os
+load_dotenv('.env')
 
 # Replace 'YOUR_TELEGRAM_BOT_TOKEN' with your actual bot token
-TELEGRAM_BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'
+TELEGRAM_BOT_TOKEN: str = os.getenv("TELEGRAM_BOT_TOKEN")
 
 
 def start(update: Update, context: CallbackContext):

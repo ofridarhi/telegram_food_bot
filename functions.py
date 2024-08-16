@@ -32,11 +32,11 @@ def extract_names_prices(soup):
         if name_tag and price_tag:
             name = name_tag.text.strip()
             price = price_tag.find_all('span')[-1].text.strip()
-            discount = None
+            discount = discount_circle.text if discount_circle else None
             products[name] = {"price": price, "discount": discount}
         elif name_tag and discount_tag:
             name = name_tag.text.strip()
             price = discount_tag.find('div').text.strip()
-            discount = discount_circle.text.strip() if discount_circle else None
+            discount = product.find('div',class_= "price").text.strip() if discount_circle else None
             products[name] = {"price": price, "discount": discount}
     return products
